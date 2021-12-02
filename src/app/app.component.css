@@ -1,0 +1,38 @@
+.todo-wrap {
+  border: 1px solid black;
+  margin-top: 40px;
+  padding: 16px;
+}
+.click-text {
+  cursor: pointer;
+  color: blue;
+  margin-bottom: 20px;
+}
+.mr-8 {
+  margin-right: 8px;
+}
+.checked-text {
+  text-decoration: none;
+  cursor: pointer;
+}
+.unchecked-text {
+  text-decoration: line-through;
+  cursor: pointer;
+}
+.list-items {
+  margin: 12px 0px;
+}
+.delete-text {
+  color: red;
+  cursor: pointer;
+  float: right;
+}
+.update-text {
+  color: green;
+  cursor: pointer;
+  float: right;
+  margin-right: 12px;
+}
+.update-wrap {
+  margin-top: 20px;
+}
