@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
 export class NoteService {
   constructor(private http: HttpClient) {}
 
-  public baseUrl = 'http://localhost:3000/';
+  public baseUrl = 'https://todoapp-werkz.herokuapp.com/';
 
   getNote() {
     return this.http.get(this.baseUrl + 'notes');
