@@ -15,18 +15,37 @@ export class NoteService {
   constructor(private http: HttpClient) {}
 
   public baseUrl = 'https://todoapp-werkz.herokuapp.com/';
+  // public baseUrl = 'http://localhost:3000/';
 
   getNote() {
-    return this.http.get(this.baseUrl + 'notes');
+    const headers = {
+      'content-type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    };
+    return this.http.get(this.baseUrl + 'notes', { headers: headers });
   }
   createNote(data: any) {
-    const headers = { 'content-type': 'application/json' };
+    const headers = {
+      'content-type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    };
     const body = data;
     console.log(body);
     return this.http.post(this.baseUrl + 'notes', body, { headers: headers });
   }
-  updateNote(data: any, id: any) {
+  login(data: any) {
     const headers = { 'content-type': 'application/json' };
+    const body = data;
+    console.log(body);
+    return this.http.post(this.baseUrl + 'users/login', body, {
+      headers: headers,
+    });
+  }
+  updateNote(data: any, id: any) {
+    const headers = {
+      'content-type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    };
     const body = data;
     console.log(body);
     return this.http.put(this.baseUrl + 'notes-update/' + id, body, {
@@ -34,11 +53,17 @@ export class NoteService {
     });
   }
   checkList(id: any) {
-    const headers = { 'content-type': 'application/json' };
+    const headers = {
+      'content-type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    };
     return this.http.put(this.baseUrl + 'notes/' + id, { headers: headers });
   }
   deleteItem(id: any) {
-    const headers = { 'content-type': 'application/json' };
+    const headers = {
+      'content-type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
+    };
     return this.http.delete(this.baseUrl + 'notes/' + id, { headers: headers });
   }
 }

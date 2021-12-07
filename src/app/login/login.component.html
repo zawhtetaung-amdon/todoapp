@@ -1,0 +1,25 @@
+<div>
+  <div>
+    <form [formGroup]="LoginForm" (ngSubmit)="onLogin()" novalidate>
+      <input
+        class="form-control"
+        formControlName="name"
+        type="text"
+        placeholder="Type Username"
+      />
+      <input
+        class="form-control"
+        formControlName="password"
+        type="password"
+        placeholder="Type Password"
+      />
+      <button
+        class="btn btn-primary mb-2"
+        type="submit"
+        [disabled]="!LoginForm.valid"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>
