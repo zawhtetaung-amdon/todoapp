@@ -2,11 +2,15 @@
   border: 1px solid black;
   margin-top: 40px;
   padding: 16px;
+  background-color: white;
+  box-shadow: 5px 10px #359397;
+  background-color: white;
 }
 .click-text {
   cursor: pointer;
   color: blue;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  display: flex;
 }
 .mr-8 {
   margin-right: 8px;
@@ -21,18 +25,30 @@
 }
 .list-items {
   margin: 12px 0px;
+  min-height: 40px;
+  border-bottom: 1px solid #d3d3d3;
 }
 .delete-text {
   color: red;
   cursor: pointer;
-  float: right;
+  /* float: right; */
 }
 .update-text {
   color: green;
   cursor: pointer;
-  float: right;
+  /* float: right; */
   margin-right: 12px;
 }
 .update-wrap {
   margin-top: 20px;
+}
+.todo-items {
+  /* width: 70%; */
+}
+.item-flex {
+  display: flex;
+  justify-content: space-between;
+}
+.mb-8 {
+  margin-bottom: 8px;
 }

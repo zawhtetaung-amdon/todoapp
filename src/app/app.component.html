@@ -1,66 +1,84 @@
 <div>
   <div><h1>Welcome to My Note:ToDoList</h1></div>
   <div class="click-text" (click)="toggleForm()">
-    Click here to add to ToDoList
+    <span class="mr-8">Click here to add to ToDoList</span>
+    <img width="20px" src="../assets/images/plus.svg" />
   </div>
-  <div *ngIf="formFlag">
+  <div class="form-group" *ngIf="formFlag">
     <form [formGroup]="Todoform" (ngSubmit)="onSubmit()" novalidate>
       <input
-        class="mr-8"
+        class="mb-8 form-control"
         formControlName="title"
         type="text"
         placeholder="Type Title"
       />
       <input
-        class="mr-8"
+        class="mb-8 form-control"
         formControlName="content"
         type="text"
         placeholder="Type Content"
       />
-      <button type="submit" [disabled]="!Todoform.valid">Submit</button>
+      <button
+        class="btn btn-primary mb-2"
+        type="submit"
+        [disabled]="!Todoform.valid"
+      >
+        Submit
+      </button>
     </form>
   </div>
   <div class="todo-wrap">
     <div><h3>This is ToDoList</h3></div>
     <div *ngIf="todoList?.length == 0">Empty</div>
     <div class="list-items" *ngFor="let list of todoList">
-      <div
-        (click)="checkList(list._id)"
-        [ngClass]="{
-          'checked-text': !list.completed,
-          'unchecked-text': list.completed
-        }"
-      >
-        <span>{{ list.title }}:</span>
-        {{ list.content }}
-        <span
-          (click)="deleteList(list._id); $event.stopPropagation()"
-          class="delete-text"
-          >Delete</span
+      <div class="item-flex">
+        <div
+          (click)="checkList(list._id)"
+          [ngClass]="{
+            'checked-text': !list.completed,
+            'unchecked-text': list.completed
+          }"
+          class="todo-items"
         >
-        <span
-          class="update-text"
-          (click)="updateList(list); $event.stopPropagation()"
-          >Update</span
-        >
+          <span>{{ list.title }}:</span>
+          {{ list.content }}
+        </div>
+        <div>
+          <span
+            class="update-text"
+            (click)="updateList(list); $event.stopPropagation()"
+            >Update</span
+          >
+          <span
+            (click)="deleteList(list._id); $event.stopPropagation()"
+            class="delete-text"
+            >Delete</span
+          >
+        </div>
       </div>
     </div>
   </div>
   <div *ngIf="updateFlag" class="update-wrap">
     <form [formGroup]="Updateform" (ngSubmit)="onUpdate()" novalidate>
       <input
-        class="mr-8"
+        class="mb-8 form-control"
         formControlName="title"
         type="text"
         placeholder="Type Title"
       />
       <input
-        class="mr-8"
+        class="mb-8 form-control"
         formControlName="content"
         type="text"
         placeholder="Type Content"
       />
-      <button type="submit" [disabled]="!Updateform.valid">Submit</button>
+      <button
+        class="btn btn-primary mb-2"
+        type="submit"
+        [disabled]="!Updateform.valid"
+      >
+        Update
+      </button>
     </form>
   </div>
 </div>
