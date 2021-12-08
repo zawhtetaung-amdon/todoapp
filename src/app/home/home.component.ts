@@ -24,10 +24,12 @@ export class HomeComponent implements OnInit {
   public todoList: any;
   public formFlag: boolean = false;
   getNote() {
-    this._service.getNote().subscribe((data: any) => {
-      this.todoList = data;
-      console.log('list is ', this.todoList);
-    });
+    this._service
+      .getNote(localStorage.getItem('userId'))
+      .subscribe((data: any) => {
+        this.todoList = data;
+        console.log('list is ', this.todoList);
+      });
   }
   public Todoform = this.fb.group({
     title: this.fb.control('', [Validators.required]),
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit {
       title: this.Todoform.get('title')?.value.trim(),
       content: this.Todoform.get('content')?.value.trim(),
       completed: false,
+      userId: localStorage.getItem('userId'),
     };
     this._service.createNote(body).subscribe((data: any) => {
       console.log('created', data);
@@ -53,19 +56,23 @@ export class HomeComponent implements OnInit {
     this.formFlag = !this.formFlag;
   }
   checkList(id: any) {
-    this._service.checkList(id).subscribe((data: any) => {
-      this.ngOnInit();
-    });
+    this._service
+      .checkList(id, localStorage.getItem('userId'))
+      .subscribe((data: any) => {
+        this.ngOnInit();
+      });
   }
   deleteList(id: any) {
-    this._service.deleteItem(id).subscribe((data: any) => {
-      this.ngOnInit();
-    });
+    this._service
+      .deleteItem(id, localStorage.getItem('userId'))
+      .subscribe((data: any) => {
+        this.ngOnInit();
+      });
   }
   public updateFlag: boolean = false;
   public current: any;
   updateList(data: any) {
-    this.updateFlag = !this.updateFlag;
+    this.updateFlag = true;
     this.current = data;
 
     this.Updateform.controls['title'].setValue(data.title);
@@ -76,11 +83,16 @@ export class HomeComponent implements OnInit {
       title: this.Updateform.get('title')?.value.trim(),
       content: this.Updateform.get('content')?.value.trim(),
       completed: false,
+      userId: localStorage.getItem('userId'),
     };
     this._service.updateNote(body, this.current._id).subscribe((data: any) => {
       console.log('created', data);
       this.Todoform.reset();
       this.ngOnInit();
     });
+  }
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('');
   }
 }

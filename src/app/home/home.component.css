@@ -52,3 +52,28 @@
 .mb-8 {
   margin-bottom: 8px;
 }
+.logout {
+  cursor: pointer;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.note {
+  width: 50px;
+}
+.note:hover {
+  animation: popup 0.4s;
+}
+@keyframes popup {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

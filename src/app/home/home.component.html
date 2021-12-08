@@ -1,8 +1,13 @@
 <div>
-  <div><h1>Welcome to My Note:ToDoList</h1></div>
+  <div class="header">
+    <h1>Welcome to My Note:ToDoList</h1>
+    <span class="logout" (click)="logout()">Logout</span>
+  </div>
   <div class="click-text" (click)="toggleForm()">
-    <span class="mr-8">Click here to add to ToDoList</span>
-    <img width="20px" src="../assets/images/plus.svg" />
+    <span class="mr-8" style="display: flex; align-items: center"
+      >New note ?</span
+    >
+    <img class="note" src="../../assets/images/sticky.svg" />
   </div>
   <div class="form-group" *ngIf="formFlag">
     <form [formGroup]="Todoform" (ngSubmit)="onSubmit()" novalidate>
@@ -73,11 +78,19 @@
         placeholder="Type Content"
       />
       <button
-        class="btn btn-primary mb-2"
+        class="btn btn-primary"
         type="submit"
         [disabled]="!Updateform.valid"
       >
         Update
+      </button>
+      <button
+        class="btn btn-light"
+        type="button"
+        (click)="updateFlag = false"
+        style="margin-left: 8px"
+      >
+        Cancel
       </button>
     </form>
   </div>

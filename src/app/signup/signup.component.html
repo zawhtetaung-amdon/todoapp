@@ -4,7 +4,7 @@
     src="../../assets/images/120906-stickynotesandscrappaper.jpg"
   />
   <div class="login-container">
-    <form [formGroup]="LoginForm" (ngSubmit)="onLogin()" novalidate>
+    <form [formGroup]="LoginForm" (ngSubmit)="onSignup()" novalidate>
       <input
         class="form-control mb-12"
         formControlName="name"
@@ -16,6 +16,12 @@
         formControlName="password"
         type="password"
         placeholder="Type Password"
+      />
+      <input
+        class="form-control mb-12"
+        formControlName="email"
+        type="email"
+        placeholder="Type Email"
       />
       <div
         style="
@@ -29,9 +35,9 @@
           type="submit"
           [disabled]="!LoginForm.valid"
         >
-          Login
+          Signup
         </button>
-        <span style="cursor: pointer" (click)="signup()">Sign up</span>
+        <span style="cursor: pointer" (click)="login()">Login</span>
       </div>
     </form>
   </div>

@@ -17,12 +17,14 @@ export class NoteService {
   public baseUrl = 'https://todoapp-werkz.herokuapp.com/';
   // public baseUrl = 'http://localhost:3000/';
 
-  getNote() {
+  getNote(data: any) {
     const headers = {
       'content-type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     };
-    return this.http.get(this.baseUrl + 'notes', { headers: headers });
+    return this.http.get(this.baseUrl + 'notes?userId=' + data, {
+      headers: headers,
+    });
   }
   createNote(data: any) {
     const headers = {
@@ -41,6 +43,14 @@ export class NoteService {
       headers: headers,
     });
   }
+  signup(data: any) {
+    const headers = { 'content-type': 'application/json' };
+    const body = data;
+    console.log(body);
+    return this.http.post(this.baseUrl + 'users/register', body, {
+      headers: headers,
+    });
+  }
   updateNote(data: any, id: any) {
     const headers = {
       'content-type': 'application/json',
@@ -52,18 +62,26 @@ export class NoteService {
       headers: headers,
     });
   }
-  checkList(id: any) {
+  checkList(id: any, userId: any) {
     const headers = {
       'content-type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     };
-    return this.http.put(this.baseUrl + 'notes/' + id, { headers: headers });
+    var body = {
+      userId: userId,
+    };
+    return this.http.put(this.baseUrl + 'notes/' + id, body, {
+      headers: headers,
+    });
   }
-  deleteItem(id: any) {
+  deleteItem(id: any, userId: any) {
     const headers = {
       'content-type': 'application/json',
       Authorization: 'Bearer ' + localStorage.getItem('token'),
     };
-    return this.http.delete(this.baseUrl + 'notes/' + id, { headers: headers });
+
+    return this.http.delete(this.baseUrl + 'notes/' + id + '/' + userId, {
+      headers: headers,
+    });
   }
 }
